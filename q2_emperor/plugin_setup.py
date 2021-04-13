@@ -10,11 +10,11 @@
 import q2_emperor
 from ._plot import plot, procrustes_plot, biplot
 
-from qiime2.plugin import (Plugin, Metadata, Str, List, Citations, Range, Int,
+from qiime2.plugin import (Plugin, Metadata, MetadataColumn, Numeric, Str, List, Citations, Range, Int,
                            Bool, Properties)
 from q2_types.ordination import PCoAResults
 
-PARAMETERS = {'metadata': Metadata, 'custom_axes': List[Str],
+PARAMETERS = {'metadata': Metadata, 'custom_axes': MetadataColumn[Numeric],
               'ignore_missing_samples': Bool}
 PARAMETERS_DESC = {
     'metadata': 'The sample metadata.',
@@ -57,7 +57,7 @@ plugin.visualizers.register_function(
     inputs={'pcoa': PCoAResults},
     parameters={
         'metadata': Metadata,
-        'custom_axes': List[Str],
+        'custom_axes': MetadataColumn[Numeric],
         'ignore_missing_samples': Bool,
         'ignore_pcoa_features': Bool
     },
