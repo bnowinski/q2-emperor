@@ -73,7 +73,7 @@ class PlotTests(unittest.TestCase):
 
     def test_plot_custom_axis(self):
         with tempfile.TemporaryDirectory() as output_dir:
-            plot(output_dir, self.pcoa, self.metadata, custom_axes=['val1'])
+            plot(output_dir, self.pcoa, self.metadata, [self.metadata.get_column('val1')])
             index_fp = os.path.join(output_dir, 'index.html')
             self.assertTrue(os.path.exists(index_fp))
             self.assertTrue('src="./emperor.html"' in open(index_fp).read())
@@ -81,7 +81,7 @@ class PlotTests(unittest.TestCase):
     def test_plot_custom_axes(self):
         with tempfile.TemporaryDirectory() as output_dir:
             plot(output_dir, self.pcoa, self.metadata,
-                 custom_axes=['val1', 'val2'])
+                 custom_axes=[self.metadata.get_column('val1'), self.metadata.get_column('val2')])
             index_fp = os.path.join(output_dir, 'index.html')
             self.assertTrue(os.path.exists(index_fp))
             self.assertTrue('src="./emperor.html"' in open(index_fp).read())
@@ -112,7 +112,7 @@ class PlotTests(unittest.TestCase):
     def test_plot_procrustes_custom_axis(self):
         with tempfile.TemporaryDirectory() as output_dir:
             procrustes_plot(output_dir, self.pcoa, other_pcoa=self.other,
-                            metadata=self.metadata, custom_axes=['val1'])
+                            metadata=self.metadata, custom_axes=[self.metadata.get_column('val1')])
             index_fp = os.path.join(output_dir, 'index.html')
             self.assertTrue(os.path.exists(index_fp))
             self.assertTrue('src="./emperor.html"' in open(index_fp).read())

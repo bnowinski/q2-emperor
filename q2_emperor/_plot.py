@@ -41,7 +41,8 @@ def generic_plot(output_dir: str, master: skbio.OrdinationResults,
                   procrustes=procrustes, remote='.')
 
     if custom_axes is not None:
-        viz.custom_axes = [custom_axes.name]
+    	viz.custom_axes = [axis.name for axis in custom_axes]
+        #viz.custom_axes = [custom_axes.name]
 
     if other_pcoa:
         viz.procrustes_names = ['reference', 'other']
